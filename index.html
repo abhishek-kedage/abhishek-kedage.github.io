@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abhishek Kedage — Automotive Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #080c14;
+    --bg-card:   #0f1420;
+    --bg-hover:  #151c2c;
+    --border:    #1e2a3e;
+    --border-hi: #2a3a54;
+    --text:      #c8d6e8;
+    --text-dim:  #5a7090;
+    --text-hi:   #e8f0f8;
+    --accent:    #00c9a7;
+    --accent-dim:#00826d;
+    --accent-bg: rgba(0,201,167,0.07);
+    --red:       #e05a5a;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); text-decoration: none; transition: opacity .15s; }
+  a:hover { opacity: .75; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(8,12,20,.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 max(2rem, 5vw);
+    height: 56px;
+  }
+  .nav-brand {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-hi);
+    letter-spacing: .04em;
+  }
+  .nav-brand span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    transition: color .15s;
+  }
+  .nav-links a:hover { color: var(--accent); opacity: 1; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 1000px; margin: 0 auto; padding: 0 max(1.5rem, 4vw); }
+
+  section { padding: 6rem 0; }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  h1, h2, h3 { font-family: var(--mono); font-weight: 400; color: var(--text-hi); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding-top: 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(90deg, rgba(0,201,167,.03) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(0,201,167,.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 80%);
+  }
+  .hero-inner { position: relative; }
+  .hero-layout {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    align-items: center;
+  }
+  .hero-photo-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .hero-photo-frame {
+    position: relative;
+    width: 260px;
+  }
+  .hero-photo-frame::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+  .hero-photo-frame::after {
+    content: '';
+    position: absolute;
+    top: -12px; right: -12px;
+    width: 40px; height: 40px;
+    border-top: 2px solid var(--accent);
+    border-right: 2px solid var(--accent);
+  }
+  .hero-photo {
+    width: 260px;
+    height: 320px;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    border-radius: 3px;
+    filter: grayscale(15%);
+    transition: filter .3s;
+  }
+  .hero-photo:hover { filter: grayscale(0%); }
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: .6rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: inline-block; width: 24px; height: 1px; background: var(--accent);
+  }
+  h1.hero-name {
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    line-height: 1.1;
+    letter-spacing: -.02em;
+    margin-bottom: 1rem;
+  }
+  .hero-sub {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 2rem;
+    letter-spacing: .04em;
+  }
+  .hero-sub span { color: var(--text); }
+  .hero-desc {
+    max-width: 540px;
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+  .hero-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .06em;
+    padding: .6rem 1.4rem;
+    border: 1px solid var(--border-hi);
+    border-radius: 3px;
+    color: var(--text);
+    background: transparent;
+    cursor: pointer;
+    transition: border-color .2s, color .2s, background .2s;
+    text-transform: uppercase;
+  }
+  .btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); opacity: 1; }
+  .btn.primary { border-color: var(--accent); color: var(--accent); }
+  .btn.primary:hover { background: var(--accent); color: var(--bg); }
+
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    padding-top: 2rem; border-top: 1px solid var(--border);
+  }
+  .stat-val {
+    font-family: var(--mono);
+    font-size: 1.6rem;
+    color: var(--text-hi);
+    line-height: 1;
+    margin-bottom: .25rem;
+  }
+  .stat-val span { color: var(--accent); }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  /* ── ABOUT / SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 2.5rem;
+  }
+  .skill-cell {
+    background: var(--bg-card);
+    padding: 1.25rem 1.5rem;
+    transition: background .15s;
+  }
+  .skill-cell:hover { background: var(--bg-hover); }
+  .skill-name {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--accent);
+    margin-bottom: .5rem;
+  }
+  .skill-items {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.8;
+  }
+
+  /* ── PROJECTS ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 2.5rem;
+  }
+  .project-card {
+    background: var(--bg-card);
+    padding: 1.75rem;
+    display: flex; flex-direction: column;
+    transition: background .2s;
+    position: relative;
+  }
+  .project-card:hover { background: var(--bg-hover); }
+  .project-card::after {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 2px; height: 0;
+    background: var(--accent);
+    transition: height .25s ease;
+  }
+  .project-card:hover::after { height: 100%; }
+  .project-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: .06em;
+    margin-bottom: .75rem;
+  }
+  .project-title {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--text-hi);
+    margin-bottom: .75rem;
+    line-height: 1.4;
+  }
+  .project-desc {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    flex: 1;
+    margin-bottom: 1.25rem;
+  }
+  .project-metric {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    padding: .4rem .75rem;
+    background: var(--accent-bg);
+    border-radius: 2px;
+    border-left: 2px solid var(--accent);
+  }
+  .project-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1rem; }
+  .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    padding: .2rem .5rem;
+    border: 1px solid var(--border-hi);
+    border-radius: 2px;
+    color: var(--text-dim);
+  }
+  .project-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    display: flex; align-items: center; gap: .4rem;
+    margin-top: auto;
+    transition: color .15s;
+  }
+  .project-link:hover { color: var(--accent); opacity: 1; }
+  .project-link::after { content: '→'; }
+
+  /* ── EXPERIENCE ── */
+  .timeline { margin-top: 2.5rem; }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border);
+  }
+  .timeline-item:last-child { border-bottom: 1px solid var(--border); }
+  .timeline-date {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    padding-top: .15rem;
+    line-height: 1.5;
+  }
+  .timeline-date strong {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--accent);
+    margin-bottom: .25rem;
+    font-weight: 500;
+  }
+  .timeline-title {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--text-hi);
+    margin-bottom: .25rem;
+  }
+  .timeline-org {
+    font-size: 13px;
+    color: var(--accent-dim);
+    margin-bottom: .75rem;
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+  .timeline-bullets { list-style: none; }
+  .timeline-bullets li {
+    font-size: 13px;
+    color: var(--text-dim);
+    padding: .2rem 0 .2rem 1rem;
+    position: relative;
+    line-height: 1.6;
+  }
+  .timeline-bullets li::before {
+    content: '—';
+    position: absolute; left: 0;
+    color: var(--border-hi);
+    font-family: var(--mono);
+  }
+
+  /* ── CONTACT ── */
+  #contact { border-top: 1px solid var(--border); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 2.5rem;
+  }
+  .contact-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--text-dim);
+    margin-bottom: .3rem;
+  }
+  .contact-val {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--text-hi);
+    margin-bottom: 1.25rem;
+  }
+  .contact-val a { color: var(--text-hi); }
+  .avail-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    padding: .5rem 1rem;
+    border: 1px solid var(--accent-dim);
+    border-radius: 3px;
+    background: var(--accent-bg);
+    margin-top: .5rem;
+  }
+  .avail-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .3; }
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem max(1.5rem, 4vw);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  footer p {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: .04em;
+  }
+
+  /* ── FADE IN ── */
+  .fade-in { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero-layout { grid-template-columns: 1fr; }
+    .hero-photo-wrap { order: -1; justify-content: flex-start; }
+    .hero-photo-frame, .hero-photo { width: 160px; height: 200px; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+    .timeline-item { grid-template-columns: 1fr; gap: .75rem; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand"><span>//</span> abhishek kedage</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-layout">
+        <div class="hero-content">
+          <div class="hero-tag">MS Automotive Engineering · Clemson University</div>
+          <h1 class="hero-name">Abhishek<br>Kedage</h1>
+          <p class="hero-sub">
+            <span>Controls</span> · <span>Electrified Powertrains</span> · <span>Thermal Systems</span> · <span>Mathematical Modelling</span>
+          </p>
+          <p class="hero-desc">
+            Graduate researcher at Clemson University (CU-ICAR), GPA 4.0/4.0. I design and validate battery management algorithms, thermal control systems, and vehicle dynamics controllers — from governing equations to hardware validation.
+          </p>
+          <div class="hero-links">
+            <a href="YOUR_RESUME_LINK" class="btn primary" target="_blank">Resume</a>
+            <a href="YOUR_PORTFOLIO_PDF" class="btn" target="_blank">Portfolio PDF</a>
+            <a href="https://linkedin.com/in/YOUR_LINKEDIN" class="btn" target="_blank">LinkedIn</a>
+            <a href="https://github.com/YOUR_GITHUB_USERNAME" class="btn" target="_blank">GitHub</a>
+          </div>
+          <div class="hero-stats">
+            <div>
+              <div class="stat-val">4<span>.0</span></div>
+              <div class="stat-label">GPA / 4.0</div>
+            </div>
+            <div>
+              <div class="stat-val">2<span>yr</span></div>
+              <div class="stat-label">Industry Exp.</div>
+            </div>
+            <div>
+              <div class="stat-val">3<span>.5yr</span></div>
+              <div class="stat-label">Formula SAE Lead</div>
+            </div>
+            <div>
+              <div class="stat-val">6<span>+</span></div>
+              <div class="stat-label">Projects</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-photo-wrap">
+          <div class="hero-photo-frame">
+            <img src="headshot.png" alt="Abhishek Kedage" class="hero-photo" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / SKILLS -->
+<section id="about">
+  <div class="container">
+    <div class="fade-in">
+      <p class="section-label">// 01 — Skills</p>
+      <h2 style="font-size: 1.6rem; margin-bottom: 1rem;">Technical Expertise</h2>
+      <p style="max-width: 560px; color: var(--text-dim); font-size: 14px;">
+        Specialized in model-based design — from algorithm development in MATLAB/Simulink to hardware validation through dyno testing, HPPC characterization, and CFD analysis.
+      </p>
+    </div>
+    <div class="skills-grid fade-in">
+      <div class="skill-cell">
+        <div class="skill-name">Controls</div>
+        <div class="skill-items">MPC · EKF · PID · Fuzzy Logic<br>Stateflow · State-space</div>
+      </div>
+      <div class="skill-cell">
+        <div class="skill-name">BMS Algorithms</div>
+        <div class="skill-items">SOC/SOP estimation · EKF observer<br>Thevenin model · CC-CV control</div>
+      </div>
+      <div class="skill-cell">
+        <div class="skill-name">Simulation</div>
+        <div class="skill-items">MATLAB · Simulink · Simscape<br>CarSim · Stateflow · Scilab</div>
+      </div>
+      <div class="skill-cell">
+        <div class="skill-name">Thermal Systems</div>
+        <div class="skill-items">Battery thermal mgmt · Motor cooling<br>ANSYS Fluent CFD · Resistance networks</div>
+      </div>
+      <div class="skill-cell">
+        <div class="skill-name">CAD / CAE</div>
+        <div class="skill-items">CATIA V5 · SolidWorks · Ansys<br>Creo · Fusion 360 · Siemens NX</div>
+      </div>
+      <div class="skill-cell">
+        <div class="skill-name">Programming</div>
+        <div class="skill-items">MATLAB (primary) · Python · C++<br>Shell · Docker · Git</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="fade-in">
+      <p class="section-label">// 02 — Projects</p>
+      <h2 style="font-size: 1.6rem; margin-bottom: 1rem;">Selected Work</h2>
+    </div>
+    <div class="projects-grid fade-in">
+
+      <div class="project-card">
+        <div class="project-num">01 / Stability Control</div>
+        <div class="project-title">4WID-MPC Vehicle Stability Control</div>
+        <div class="project-desc">Hierarchical yaw stability controller for a 4-wheel-independent-drive EV. Mamdani fuzzy upper layer + MPC torque allocator with custom Hildreth QP solver. Validated in CarSim across three ISO maneuvers.</div>
+        <div class="project-metric">Yaw rate 144 → 47 deg/s · 75% sideslip reduction</div>
+        <div class="project-tags">
+          <span class="tag">MATLAB</span><span class="tag">Simulink</span><span class="tag">CarSim</span><span class="tag">MPC</span><span class="tag">Fuzzy</span>
+        </div>
+        <a href="https://github.com/YOUR_GITHUB_USERNAME/4wid-mpc-stability-control" class="project-link" target="_blank">View on GitHub</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">02 / Powertrain Simulation</div>
+        <div class="project-title">Hybrid / EV / ICE Powertrain Modeling</div>
+        <div class="project-desc">Forward-facing simulation comparing ICE, BEV, and series-parallel HEV under real drive cycles. Rule-based Stateflow EMS with Economy and Sport modes managing engine, motor, clutch, regen, and charging.</div>
+        <div class="project-metric">64 MPG · 819-mile HEV range · 43 MPG ICE</div>
+        <div class="project-tags">
+          <span class="tag">MATLAB</span><span class="tag">Simulink</span><span class="tag">Stateflow</span><span class="tag">HEV</span>
+        </div>
+        <a href="https://github.com/YOUR_GITHUB_USERNAME/hybrid-ev-ice-powertrain-sim" class="project-link" target="_blank">View on GitHub</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">03 / BMS · DOE + Stellantis</div>
+        <div class="project-title">BMS Algorithms — SOC & SOP Estimation</div>
+        <div class="project-desc">EKF-based SOC estimation and voltage-constraint SOP estimation for a 110 kWh production battery pack. Stateflow CC-CV charging controller. Thermal controls sized for 8.9 kW peak heat load.</div>
+        <div class="project-metric">110 kWh pack · EKF observer · 8.9 kW thermal design</div>
+        <div class="project-tags">
+          <span class="tag">MATLAB</span><span class="tag">Simulink</span><span class="tag">EKF</span><span class="tag">Stateflow</span><span class="tag">BMS</span>
+        </div>
+        <a href="https://github.com/YOUR_GITHUB_USERNAME/bms-soc-sop-estimation" class="project-link" target="_blank">View on GitHub</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">04 / Thermal · Formula SAE</div>
+        <div class="project-title">Motor Thermal Management System</div>
+        <div class="project-desc">Liquid cooling for a 32 kW racing motor exceeding 85°C. Thermal resistance network → CATIA V5 cooling jacket → ANSYS Fluent CFD → Arduino PID controller. Car finished 2nd nationally at Formula Bharat.</div>
+        <div class="project-metric">40% pump energy reduction · 4.8 kW managed · 15 kPa CFD</div>
+        <div class="project-tags">
+          <span class="tag">CATIA V5</span><span class="tag">ANSYS</span><span class="tag">Arduino</span><span class="tag">PID</span>
+        </div>
+        <a href="https://github.com/YOUR_GITHUB_USERNAME/formula-sae-motor-thermal-management" class="project-link" target="_blank">View on GitHub</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">05 / Sensing & ADAS</div>
+        <div class="project-title">Sensor Fusion & Adaptive Cruise Control</div>
+        <div class="project-desc">Dual HC-SR04 ultrasonic sensor fusion with Kalman filtering deployed on an RC vehicle. Independent PID controllers for ACC (throttle) and lane keeping (steering) at ~200 Hz on Arduino.</div>
+        <div class="project-metric">&lt; 3 mm accuracy · 600 → 250 ms convergence</div>
+        <div class="project-tags">
+          <span class="tag">Arduino C++</span><span class="tag">Kalman</span><span class="tag">PID</span><span class="tag">ADAS</span>
+        </div>
+        <a href="https://github.com/YOUR_GITHUB_USERNAME/adaptive-cruise-control-sensor-fusion" class="project-link" target="_blank">View on GitHub</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">06 / Battery Pack · Formula SAE</div>
+        <div class="project-title">Formula SAE Accumulator Design</div>
+        <div class="project-desc">Ground-up design of a 72V 6.2 kWh NMC racing battery pack. OpenLap energy simulation → cell selection → 20s4p architecture → FEA → Orion BMS 2 integration → Simulink models for cell, pack, CC-CV, and heat dissipation.</div>
+        <div class="project-metric">80 cells · 40g FEA validated · Orion BMS 2</div>
+        <div class="project-tags">
+          <span class="tag">CATIA</span><span class="tag">ANSYS</span><span class="tag">MATLAB</span><span class="tag">Simulink</span>
+        </div>
+        <a href="https://github.com/YOUR_GITHUB_USERNAME/formula-sae-accumulator-design" class="project-link" target="_blank">View on GitHub</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="fade-in">
+      <p class="section-label">// 03 — Experience</p>
+      <h2 style="font-size: 1.6rem;">Background</h2>
+    </div>
+    <div class="timeline fade-in">
+
+      <div class="timeline-item">
+        <div class="timeline-date">
+          <strong>Current</strong>
+          Jan 2026 – Present<br>Clemson, SC
+        </div>
+        <div>
+          <div class="timeline-title">Deep Orange 18 — Clemson University</div>
+          <div class="timeline-org">Research · Powertrain</div>
+          <ul class="timeline-bullets">
+            <li>Powertrain sizing for high-speed autonomous vehicle platform</li>
+            <li>Simulating powertrain architectures for performance and efficiency comparison</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">
+          <strong>Research</strong>
+          Sep 2025 – Jan 2026<br>Clemson / Stellantis
+        </div>
+        <div>
+          <div class="timeline-title">Research Assistant — Battery Workforce Challenge</div>
+          <div class="timeline-org">Clemson University · U.S. DOE + Stellantis</div>
+          <ul class="timeline-bullets">
+            <li>BMS algorithm development: EKF-based SOC and SOP estimation for 110 kWh pack</li>
+            <li>Thermal controls design: heat load analysis and coolant system sizing</li>
+            <li>Stateflow CC-CV charging state machine with fault detection</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">
+          <strong>Industry</strong>
+          Jul 2023 – Jul 2025<br>Pune, India
+        </div>
+        <div>
+          <div class="timeline-title">System Engineer</div>
+          <div class="timeline-org">Earthsense Inc.</div>
+          <ul class="timeline-bullets">
+            <li>Developed 30 Nm / 0.3 kWh tractive system for autonomous inspection robot — delivered 120-min runtime</li>
+            <li>Led EV → hybrid architecture shift (10 kW) — extended runtime from 3 hrs to 10 hrs</li>
+            <li>Dockerized modular system integration with Python and Shell scripts</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">
+          <strong>Formula SAE</strong>
+          Aug 2019 – Feb 2023<br>COEP, Pune
+        </div>
+        <div>
+          <div class="timeline-title">Technical Lead — Team Octane Racing Electric</div>
+          <div class="timeline-org">College of Engineering Pune · 40-member team · 2nd place nationally</div>
+          <ul class="timeline-bullets">
+            <li>Led thermal and powertrain subsystems across multiple Formula SAE vehicle generations</li>
+            <li>Designed liquid cooling for 32 kW motor — 40% pump energy reduction</li>
+            <li>Designed 72V 6.2 kWh NMC battery pack — full cell selection, architecture, BMS, FEA</li>
+            <li>HPPC testing and Thevenin model parameter extraction for cell characterization</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="fade-in">
+      <p class="section-label">// 04 — Contact</p>
+      <h2 style="font-size: 1.6rem; margin-bottom: .5rem;">Get in Touch</h2>
+      <p style="color: var(--text-dim); font-size: 14px; margin-bottom: 0;">
+        Seeking Summer 2026 internships in the USA — Powertrain Controls · BMS · Thermal Systems · Vehicle Dynamics.
+      </p>
+    </div>
+    <div class="contact-grid fade-in">
+      <div>
+        <div class="contact-label">Email</div>
+        <div class="contact-val"><a href="mailto:kedageabhishek@outlook.com">kedageabhishek@outlook.com</a></div>
+        <div class="contact-label">Phone</div>
+        <div class="contact-val">+1 (864) 304 9776</div>
+        <div class="contact-label">Location</div>
+        <div class="contact-val">Greenville, SC, USA</div>
+        <div class="avail-badge">Available from June 1, 2026</div>
+      </div>
+      <div>
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-val"><a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank">linkedin.com/in/YOUR_LINKEDIN</a></div>
+        <div class="contact-label">GitHub</div>
+        <div class="contact-val"><a href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank">github.com/YOUR_GITHUB_USERNAME</a></div>
+        <div class="contact-label">Portfolio PDF</div>
+        <div class="contact-val"><a href="YOUR_PORTFOLIO_PDF" target="_blank">Download PDF</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Abhishek Kedage · MS Automotive Engineering · Clemson University</p>
+  <p>Built with HTML/CSS · Hosted on GitHub Pages</p>
+</footer>
+
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
