@@ -849,7 +849,6 @@
         <div class="project-img-col">
           <div class="multi-img-col grid-3v">
             <img src="assets/thermal_catia_cad.png" alt="CATIA V5 cooling jacket CAD" class="img-fit" />
-            <img src="assets/thermal_cfd.png" alt="ANSYS CFD pressure and temperature" class="img-fit" />
             <img src="assets/thermal_hardware.png" alt="Hardware assembly" class="img-fit" />
           </div>
         </div>
@@ -894,12 +893,54 @@
       </div>
     </div>
 
-    <!-- P6 -->
+    <!-- P6 — MOTOR MODELLING (insert before old P6 accumulator) -->
+    <div class="project-card fade">
+      <div class="project-card-inner">
+        <div class="project-content">
+          <div class="project-header">
+            <span class="project-num-badge">06</span>
+            <span class="project-category">Electromagnetic Machines · Simulink</span>
+          </div>
+          <div class="project-title">Electric Machine Modelling — Linear, ABC & DQ Frame</div>
+          <div class="project-desc">
+            Three machine models built from first principles in Simulink, progressing from a linear electromagnetic actuator to a full three-phase induction machine in two different reference frames — abc phase and dq reference frame.
+            <br><br>
+            The <strong>linear machine model</strong> applies Newton's law and Faraday's law to describe the coupled electro-mechanical dynamics of a moving-coil actuator. The model outputs velocity, position, force, mechanical power, field energy, and coil current under step force and voltage inputs. Spring stiffness (K = 2667 N/m), damping (D = 4 N·s/m), and mass (0.055 kg) are parameterized for a realistic actuator.
+            <br><br>
+            The <strong>abc phase induction machine</strong> models stator and rotor voltages per phase using Faraday's law and Newton's rotational law. Six coupled voltage equations (3 stator + 3 rotor) drive flux linkage states, from which electromagnetic torque and rotor speed are computed. Supplied at 460 V / 60 Hz, 4-pole configuration.
+            <br><br>
+            The <strong>DQ reference frame model</strong> transforms the abc equations into the synchronously rotating dq frame, decoupling the coupled phase equations into a more computationally efficient state-space form. The Torque vs RPM curve obtained from simulation matches the expected induction machine characteristic — high starting torque with oscillatory transient, settling to a stable operating point.
+          </div>
+          <div class="project-metrics">
+            <span class="metric-pill">Linear machine · Newton + Faraday</span>
+            <span class="metric-pill">3-phase induction · abc & dq frame</span>
+            <span class="metric-pill">Torque–RPM curve validated</span>
+          </div>
+          <div class="project-tags">
+            <span class="tag">MATLAB</span><span class="tag">Simulink</span>
+            <span class="tag">Electromagnetic Machines</span>
+            <span class="tag">DQ Reference Frame</span><span class="tag">First Principles</span>
+          </div>
+          <div class="project-link-row">
+            <a href="https://github.com/YOUR_GITHUB_USERNAME/electric-machine-modelling" class="btn-primary" target="_blank">View on GitHub</a>
+          </div>
+        </div>
+        <div class="project-img-col">
+          <div class="multi-img-col grid-3v">
+            <img src="assets/motor_linear_machine.png" alt="Linear machine Simulink model" class="img-fit" />
+            <img src="assets/motor_torque_rpm.png" alt="Torque vs RPM curve from DQ frame simulation" class="img-fit" />
+            <img src="assets/motor_dq_simulink.png" alt="DQ reference frame induction machine model" class="img-fit" />
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- P7 -->
     <div class="project-card fade">
       <div class="project-card-inner reverse">
         <div class="project-content">
           <div class="project-header">
-            <span class="project-num-badge">06</span>
+            <span class="project-num-badge">07</span>
             <span class="project-category">Battery Pack · Formula SAE</span>
           </div>
           <div class="project-title">Formula SAE — Accumulator Design</div>
