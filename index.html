@@ -420,6 +420,138 @@
   .project-img-placeholder svg { opacity: .3; }
 
   /* ── EXPERIENCE ── */
+
+  /* -- FEATURED LEADERSHIP -- */
+  #leadership {
+    background: linear-gradient(180deg, var(--bg-white) 0%, var(--bg) 100%);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .leadership-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 390px;
+    background: var(--bg-white);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow .25s, transform .25s;
+  }
+  .leadership-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+  }
+  .leadership-content {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .leadership-topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .leadership-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .leadership-status {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .25rem .65rem;
+    border-radius: 20px;
+    background: #f0fdf4;
+    border: 1px solid #86efac;
+    color: #15803d;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .leadership-title {
+    font-size: 1.55rem;
+    line-height: 1.25;
+    letter-spacing: -.02em;
+    color: var(--text-hi);
+    margin-bottom: .35rem;
+  }
+  .leadership-org {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: .25rem;
+  }
+  .leadership-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem 1.25rem;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--text-dim);
+    margin-bottom: 1.35rem;
+  }
+  .leadership-bullets {
+    list-style: none;
+    display: grid;
+    gap: .65rem;
+    margin-bottom: 1.5rem;
+  }
+  .leadership-bullets li {
+    position: relative;
+    padding-left: 1.15rem;
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--text-dim);
+  }
+  .leadership-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: .63rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .leadership-media {
+    min-height: 440px;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-subtle);
+    border-left: 1.5px solid var(--border);
+  }
+  .leadership-media img {
+    width: 100%;
+    height: 100%;
+    min-height: 440px;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    transition: transform .4s ease;
+  }
+  .leadership-card:hover .leadership-media img { transform: scale(1.03); }
+  .leadership-caption {
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    padding: .65rem .8rem;
+    border: 1px solid rgba(255,255,255,.55);
+    border-radius: 8px;
+    background: rgba(17,24,39,.72);
+    backdrop-filter: blur(8px);
+    color: white;
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: .02em;
+  }
+
   #experience { background: var(--bg); }
   .exp-grid { display: grid; gap: 1.25rem; }
   .exp-card {
@@ -562,6 +694,13 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
+    .leadership-card { grid-template-columns: 1fr; }
+    .leadership-media {
+      min-height: 280px;
+      border-left: none;
+      border-top: 1.5px solid var(--border);
+    }
+    .leadership-media img { min-height: 280px; max-height: 360px; }
     .project-card-inner, .project-card-inner.reverse { grid-template-columns: 1fr; direction: ltr; }
     .project-img-col { min-height: 240px; border-left: none; border-top: 1.5px solid var(--border); }
     .project-card-inner.reverse .project-img-col { border-right: none; border-top: 1.5px solid var(--border); }
@@ -574,6 +713,9 @@
     .contact-wrap { grid-template-columns: 1fr; gap: 2rem; }
   }
   @media (max-width: 600px) {
+    .leadership-content { padding: 1.75rem 1.5rem; }
+    .leadership-topline { align-items: flex-start; }
+    .leadership-meta { flex-direction: column; gap: .2rem; }
     .nav-links li:not(:last-child) { display: none; }
     .skills-grid { grid-template-columns: 1fr; }
     .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
@@ -961,6 +1103,53 @@
       </div>
     </div>
 
+  </div>
+</section>
+
+
+<!-- FEATURED LEADERSHIP -->
+<section id="leadership">
+  <div class="container">
+    <div class="fade">
+      <div class="section-chip">Leadership</div>
+      <h2 class="section-title">Autonomous Vehicle Program</h2>
+      <p class="section-sub">Cross-functional leadership, controls architecture, and embedded vehicle integration for Clemson University's Deep Orange 18 program.</p>
+    </div>
+
+    <article class="leadership-card fade">
+      <div class="leadership-content">
+        <div class="leadership-topline">
+          <span class="leadership-label">Featured Role</span>
+          <span class="leadership-status"><span class="avail-dot"></span>Current</span>
+        </div>
+
+        <h3 class="leadership-title">Team Lead &mdash; Deep Orange 18</h3>
+        <div class="leadership-org">Clemson University &middot; Internship</div>
+        <div class="leadership-meta">
+          <span>Jan 2026 &ndash; Present</span>
+          <span>Greenville, South Carolina &middot; On-site</span>
+        </div>
+
+        <ul class="leadership-bullets">
+          <li>Lead a cross-functional team of 25 engineers within Clemson University's Deep Orange Program to design and build a fully autonomous racecar.</li>
+          <li>Spearheaded the ground-up development and implementation of the vehicle's autonomous control architecture.</li>
+          <li>Managed collaboration and synchronized engineering efforts across multiple vehicle sub-teams to ensure seamless system integration and project alignment.</li>
+          <li>Engineered and validated real-time communication networks integrating a Raptor New Eagle embedded controller with critical vehicle sensors and hardware actuators.</li>
+        </ul>
+
+        <div class="project-tags">
+          <span class="tag">Leadership Management</span>
+          <span class="tag">Control Systems Design</span>
+          <span class="tag">Embedded Systems</span>
+          <span class="tag">Vehicle Integration</span>
+        </div>
+      </div>
+
+      <div class="leadership-media">
+        <img src="assets/deep_orange_18.png" alt="Deep Orange 18 autonomous racecar team and vehicle" loading="lazy" decoding="async" />
+        <div class="leadership-caption">Deep Orange 18 &middot; Autonomous racecar development</div>
+      </div>
+    </article>
   </div>
 </section>
 
